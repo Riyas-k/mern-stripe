@@ -4,6 +4,7 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 
 function App() {
+  const publishableKey = "pk_test_51Nv25OSIbpzFRocgaATP7295x5fJdV6WxIBrnB5W9aRAqQtrJUlFz95u9UjZaVVgVcVkfRoFruPygv1gzOrgvNuk00G5tsk0TX"
   const [product, setProduct] = useState({
     name: "Headphone 5",
     price: 536,
@@ -37,7 +38,7 @@ function App() {
         <span>Price: </span>${product.price}
       </p>
       <StripeCheckout
-        stripeKey="pk_test_51Nv25OSIbpzFRocgaATP7295x5fJdV6WxIBrnB5W9aRAqQtrJUlFz95u9UjZaVVgVcVkfRoFruPygv1gzOrgvNuk00G5tsk0TX"
+        stripeKey={publishableKey}
         label="Pay Now"
         name="Pay With Credit Card"
         billingAddress

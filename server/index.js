@@ -16,3 +16,20 @@ app.listen(PORT, (err) => {
   if (err) throw err;
   console.log(`Server started ${PORT}`);
 });
+
+app.post("/payment", async (req, res) => {
+  let status, error;
+  const { token, amount } = req.body;
+  try {
+    await Stripe.charges.create( {
+      source: token.id,
+      amount,
+      currency: "usd",
+    });
+    status = 'success'
+  } catch (err) {
+    error = 'failed'
+    console.log(err);
+  }
+  res.json({error,status})
+});
